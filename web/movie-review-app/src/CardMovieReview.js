@@ -13,18 +13,18 @@ const CardMovieReview = props => {
           </div>
         </div>
         <div className="col-2 container">
-          <div class="row">
-            <div class="col">
+          <div className="row">
+            <div className="col">
               <h2 className="d-inline">Act </h2>
             </div>
-            <div class="col">
+            <div className="col">
               {props.movie.act === -1 ? <i style={{fontSize: '35px'}} className="fas fa-thumbs-down d-inline"></i> : <i style={{fontSize: '30px'}} className="fas fa-thumbs-up d-inline"></i>}
             </div>
-            <div class="w-100"></div>
-            <div class="col">
+            <div className="w-100"></div>
+            <div className="col">
               <h2 className="d-inline">Plot </h2>
             </div>
-            <div class="col">
+            <div className="col">
             {props.movie.plot === -1 ? <i style={{fontSize: '35px'}} className="fas fa-thumbs-down d-inline"></i> : <i style={{fontSize: '30px'}} className="fas fa-thumbs-up d-inline"></i>}
             </div>
           </div>

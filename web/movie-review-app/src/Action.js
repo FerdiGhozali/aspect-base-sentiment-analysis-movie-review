@@ -8,7 +8,7 @@ export const addTextReview = (movieTitle, textReview) => {
         body: textReview
       })
       .then(response => {
-        dispatch(response.data);
+        dispatch(addSentiment(movieTitle, textReview, response.data));
       })
       .catch(error => {
         console.log(error);
@@ -19,6 +19,8 @@ export const addTextReview = (movieTitle, textReview) => {
 export function addSentiment(movieTitle, textReview, data) {
   return {
     type: 'ADD_SENTIMENT',
-    data
+    movieTitle,
+    textReview,
+    data,
   };
 }

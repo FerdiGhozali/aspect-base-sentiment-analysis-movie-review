@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addTextReview } from './Action';
 
 class InputMovieReview extends Component {
   constructor(props) {
@@ -23,7 +25,11 @@ class InputMovieReview extends Component {
   }
 
   onClick = () => {
-    alert(this.state.movieTitle + ' ' + this.state.textReview)
+    if (this.state.movieTitle === '' || this.state.textReview === '') {
+      alert("Form cannot be empty!")
+    } else {
+      addTextReview(this.state.movieTitle, this.state.textReview)
+    }
   }
 
   render() {
@@ -37,10 +43,16 @@ class InputMovieReview extends Component {
         <div style={{textAlign: "center"}}>
           <textarea className="form-control" rows="2" value={this.state.textReview} onChange={evt => this.updateInputTextReview(evt)}/>
         </div>
-        <button style={{flex: '1', marginTop: '10px', marginBottom: '10px'}} type="button" class="btn btn-primary" onClick={() => this.onClick()}>Submit</button>
+        <button style={{flex: '1', marginTop: '10px', marginBottom: '10px'}} type="button" className="btn btn-primary" onClick={() => this.onClick()}>Submit</button>
       </div>
     );
   }
 }
 
-export default InputMovieReview;
+const mapDispatchToProps = dispatch => {
+  return {
+    addTextReview: (textReview, movieTitle) => dispatch(addTextReview(textReview, movieTitle))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(InputMovieReview);
