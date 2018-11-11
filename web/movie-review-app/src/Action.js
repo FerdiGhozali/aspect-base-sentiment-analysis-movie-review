@@ -1,5 +1,6 @@
 export const addTextReview = (movieTitle, textReview) => {
   return (dispatch, getState, url_api) => {
+    console.log('test')
     return fetch(`${url_api}/predict`, {
         method: 'POST',
         headers: {
