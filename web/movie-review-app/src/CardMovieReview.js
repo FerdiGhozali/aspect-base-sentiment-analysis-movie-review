@@ -4,7 +4,7 @@ const CardMovieReview = props => {
   return (
     <div className="list-group-item list-group-item-action flex-column align-items-start active container">
       <div className="d-flex w-70 justify-content-between">
-        <h5 className="mb-1">{props.movie.movieTitle}</h5>
+        <h4 className="mb-1">{props.movie.movieTitle}</h4>
       </div>
       <div className="row">
         <div className="col-10">
@@ -25,7 +25,7 @@ const CardMovieReview = props => {
               <h2 className="d-inline">Plot </h2>
             </div>
             <div className="col">
-            {props.movie.plot === 0 ? <i style={{fontSize: '35px'}} className="fas fa-thumbs-down d-inline"></i> : <i style={{fontSize: '30px'}} className="fas fa-thumbs-up d-inline"></i>}
+              {props.movie.plot === 0 ? <i style={{fontSize: '35px'}} className="fas fa-thumbs-down d-inline"></i> : <i style={{fontSize: '30px'}} className="fas fa-thumbs-up d-inline"></i>}
             </div>
           </div>
         </div>
