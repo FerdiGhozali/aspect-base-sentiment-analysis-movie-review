@@ -7,7 +7,7 @@ const movieReducer = (state, action) => {
         act : action.data,
         plot : action.data
       }
-      return {...state, movies : [...state.movies, newSentiment]}
+      return {...state, movies : [newSentiment, ...state.movies]}
     default:
       return state
   }

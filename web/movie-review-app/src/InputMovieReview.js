@@ -29,6 +29,10 @@ class InputMovieReview extends Component {
       alert("Form cannot be empty!")
     } else {
       this.props.addTextReview(this.state.movieTitle, this.state.textReview)
+      this.setState({
+        textReview: '',
+        movieTitle: ''
+      })
     }
   }
 
