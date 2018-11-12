@@ -12,8 +12,6 @@ from sklearn.externals import joblib
 
 app = Flask(__name__)
 
-
-
 def preprocessing(document, skip_before_keyword=False, skip_after_keyword=False, prev_bag_of_word=1, after_bag_of_word=5) :
     act = ['acting','role playing','act',' actress','actor','role','portray','character','villain','performance', 'play', 'perform', 'doing']
     plot = ['plot','story','storyline','tale','romance','dialog','script','storyteller',' ending','storytelling','revenge','betrayal','writing']
@@ -94,18 +92,14 @@ def predict_sentiment(teks) :
     sentiment_score = preprocessing(teks)
     sentiment_score_act = pd.DataFrame([sentiment_score[0]], columns=["sentiment_score"])
     sentiment_score_plot = pd.DataFrame([sentiment_score[1]], columns=["sentiment_score"])
-    xgb1 = joblib.load('../../src/model_xgb_act.h5')
-    xgb2 = joblib.load('../../src/model_xgb_plot.h5')
-    act_sentiment = xgb1.predict(sentiment_score_act)
-    plot_sentiment = xgb2.predict(sentiment_score_plot)
+    rf1 = joblib.load('../../src/model_rf_act.h5')
+    rf2 = joblib.load('../../src/model_rf_plot.h5')
+    act_sentiment = rf1.predict(sentiment_score_act)
+    plot_sentiment = rf2.predict(sentiment_score_plot)
     
     return(act_sentiment[0], plot_sentiment[0])
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
-
-@app.route('/predict', methods=['POST'])
+@app.route('/', methods=['POST'])
 def predict():
     if request.method == 'POST':
       try:
@@ -120,10 +114,12 @@ def predict():
             print("plot => positive")
         else :
             print("plot => negative")
+        print(act_sentiment)
+        print(plot_sentiment)
 
       except ValueError:
         return jsonify("Error")
-    return jsonify(text)
+    return jsonify(act_sentiment=int(act_sentiment), plot_sentiment=int(plot_sentiment))
         
 if __name__ == '__main__':
     app.run(debug=True)

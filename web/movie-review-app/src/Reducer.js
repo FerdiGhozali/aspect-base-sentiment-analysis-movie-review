@@ -4,8 +4,8 @@ const movieReducer = (state, action) => {
       let newSentiment = {
         movieTitle : action.movieTitle,
         textReview : action.textReview,
-        act : action.data,
-        plot : action.data
+        act : action.data.act_sentiment,
+        plot : action.data.plot_sentiment
       }
       return {...state, movies : [newSentiment, ...state.movies]}
     default:
